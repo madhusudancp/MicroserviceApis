@@ -2,6 +2,9 @@ package com.maddy.manager;
 
 public class ReverseLettersManager {
      
+	private ReverseLettersManager() {
+		
+	}
 	static final String REGX =" ";
 	
 	/*

@@ -21,16 +21,16 @@ public class TestTriangleTypeManager {
 	public void TestgetTriangleType() {
 		
 		List<Integer> expected = Arrays.asList(3,4,5);
-		assertEquals("Scalene",TriangleTypeManager.getTriangleType(expected));
+		assertEquals("SCALENE",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(5,5,5);
-		assertEquals("Equilateral",TriangleTypeManager.getTriangleType(expected));
+		assertEquals("EQUILATERAL",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(2,2,3);
-		assertEquals("Isosceles",TriangleTypeManager.getTriangleType(expected));
+		assertEquals("ISOSCELES",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(2,2,10);
-		assertEquals("NotTriangle",TriangleTypeManager.getTriangleType(expected));
+		assertEquals("NOTTRIANGLE",TriangleTypeManager.getTriangleType(expected));
 	}
 
 	@Test

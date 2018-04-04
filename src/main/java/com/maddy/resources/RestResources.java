@@ -66,7 +66,7 @@ public class RestResources {
 	public ResponseEntity<String> getTriangleType(@RequestParam(value="a",defaultValue = "0") Integer a,
 												  @RequestParam(value="b",defaultValue = "0") Integer b,
 												  @RequestParam(value="c",defaultValue = "0") Integer c) {
-		LOGGER.info("Value of a,b,c are : {}",a,b,c);
+		LOGGER.info("Value of a,b,c are : {},{},{}",a,b,c);
 		String result=apiService.getTriangleType(a, b, c);
 		LOGGER.info("Return Triangle type is {}", result);
 		return new ResponseEntity<>(result,getHeader(), HttpStatus.OK);

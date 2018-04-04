@@ -9,8 +9,8 @@ public class TriangleTypeManager {
 	/*
     *  ENUM to store triangle types
     */
-	enum TriangleType {
-	    Equilateral, NotTriangle, Isosceles, Scalene
+	private enum TriangleType {
+	    EQUILATERAL, NOTTRIANGLE, ISOSCELES, SCALENE
 	}
 	
 	/*
@@ -19,7 +19,7 @@ public class TriangleTypeManager {
      */
 	public static String getTriangleType(List<Integer> sidesList) {
 		
-		String result=TriangleType.NotTriangle.toString();
+		String result=TriangleType.NOTTRIANGLE.toString();
 		
 		Integer side1= sidesList.get(0);
 		Integer side2= sidesList.get(1);
@@ -30,15 +30,15 @@ public class TriangleTypeManager {
 	        {//yes Triangle can be formed
 		            if(checkIfEquilateral(side1,side2,side3))
 		               {
-		                result= TriangleType.Equilateral.toString();
+		                result= TriangleType.EQUILATERAL.toString();
 		               }
 		            if(checkIfIsosceles(side1,side2,side3))
 		               {
-		                result= TriangleType.Isosceles.toString();
+		                result= TriangleType.ISOSCELES.toString();
 		               }
 		            if(checkIfScalene(side1,side2,side3))
 		               {
-		                result= TriangleType.Scalene.toString();
+		                result= TriangleType.SCALENE.toString();
 		               }
 	           }
 	        return result;
@@ -60,39 +60,41 @@ public class TriangleTypeManager {
 
    /*The sum of two smaller sides must be greater than the longest side to be a triangle*/
     static Boolean checkIfTriangleCanBeFormed(Integer side1,Integer side2,Integer side3){
-	   if((side1 + side2 > side3)) {
-		   System.out.print("\n RESULT: Triangle can be formed.");
-	       return true;
+    	boolean result = false;
+      if((side1 + side2 > side3)) {
+    	  result = true;
       }
-	   System.out.print("\n RESULT: Triangle can not be formed.");
-	   return false;
+      return result;
    }
    
    /*To check to see if it an Equilateral triangle (3 equal sides )*/	
     static Boolean checkIfEquilateral(Integer side1,Integer side2,Integer side3) {
-	   if((side1==side2) && (side2==side3))
+    	boolean result = false;
+    if((side1==side2) && (side2==side3))
        {
-	       System.out.print("\n RESULT: An Equilateral Triangle.");
-	       return true;
-      }return false;
+    	result = true;
+      }
+    return result;
    }
    
    /*To check to see if it is an Isosceles triangle (2 of the same size and 1 different)*/	
     static Boolean checkIfIsosceles(Integer side1,Integer side2,Integer side3) {
-	   if ((side1 == side2) & (side2 != side3) || (side2 == side3) & (side3!= side1))
+	boolean result = false;   
+    if ((side1 == side2) && (side2 != side3) || (side2 == side3) && (side3!= side1))
        {
-	       System.out.print("\n RESULT: An Isosceles Triangle.");
-	       return true;
-      }return false;
+    	result = true;
+      }
+    return result;
    }
    
    /*To check to see if it is a Scalene triangle (3 different sizes)*/	
     static Boolean checkIfScalene(Integer side1,Integer side2,Integer side3) {
-	   if((side1 != side2) & (side2 != side3))
+    	boolean result =false;
+    	if((side1 != side2) && (side2 != side3))
        {
-	       System.out.print("\n RESULT: An Scalene Triangle.");
-	       return true;
-      }return false;
+    		result = true;
+      }
+    	return result;
    } 
   
    
