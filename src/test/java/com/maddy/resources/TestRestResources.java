@@ -1,17 +1,21 @@
 package com.maddy.resources;
 
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigInteger;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.maddy.services.ApiService;
 
@@ -20,8 +24,6 @@ import com.maddy.services.ApiService;
 public class TestRestResources {
 
 	
-	@Autowired
-    private RestResources restResources;
 
     @Autowired
     private MockMvc mockMvc;
@@ -37,50 +39,35 @@ public class TestRestResources {
     
     
     @Test
-    public void getAllBags() throws Exception {
+    public void TestGetFibonacciNumber() throws Exception {
 
-    	/*Mockito.when(bagService.getAllBags(Mockito.any())).thenReturn(mockBagList);
-    	RequestBuilder requestBuilder= MockMvcRequestBuilders.get("/bags/1");
-    	MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-    	System.out.println(mvcResult.getResponse());
-    	*/
+    	when(apiService.getFibonacciNumber(10)).thenReturn(BigInteger.valueOf(55));
+        this.mockMvc.perform(get("/api/fibonacci?n=10")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("55"));
     	
     }
 	
+    @Test
+    public void TestGetCharReversedWords() throws Exception {
+
+        
+        when(apiService.getCharReversedWords("How are you")).thenReturn("woH era uoy");
+        this.mockMvc.perform(get("/api/reversewords?sentence=How are you")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("woH era uoy"));
+    }
+
+    
+    
+    @Test
+    public void TestGetTriangleType() throws Exception {
+
+    	when(apiService.getTriangleType(3,4,5)).thenReturn("SCALENE");
+        this.mockMvc.perform(get("/api/triangletype?a=3&b=4&c=5")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("SCALENE"));
+    }
+
 	
 	
 	
-	
-	/*
 
-
-		@LocalServerPort
-		private int port;
-
-		TestRestTemplate restTemplate = new TestRestTemplate();
-
-		HttpHeaders headers = new HttpHeaders();
-
-		@Test
-		public void testRetrieveStudentCourse() {
-
-			HttpEntity<String> entity = new HttpEntity<String>(null, headers);
-
-			ResponseEntity<String> response = restTemplate.exchange(
-					createURLWithPort("/students/Student1/courses/Course1"),
-					HttpMethod.GET, entity, String.class);
-
-			String expected = "{id:Course1,name:Spring,description:10 Steps}";
-
-			try {
-				JSONAssert.assertEquals(expected, response.getBody(), false);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		private String createURLWithPort(String uri) {
-			return "http://localhost:" + port + uri;
-		}*/
 }
