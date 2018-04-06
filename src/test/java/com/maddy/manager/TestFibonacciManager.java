@@ -28,6 +28,9 @@ public class TestFibonacciManager {
 	}
 
 	
-	
+	 @Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentException() {
+		       FibonacciManager.getNthFibonacci(-1);
+	         }
 	
 }

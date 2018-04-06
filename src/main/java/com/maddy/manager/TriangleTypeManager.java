@@ -50,6 +50,9 @@ public class TriangleTypeManager {
     *
     */
    public static List<Integer> sortSidesOftriangleAsc(Integer side1,Integer side2,Integer side3){
+	   if(side1<=0 || side2<=0 || side3<=0) {
+   		throw new IllegalArgumentException();
+   	  }
 	   List<Integer> sidesList = new ArrayList<>();
 		sidesList.add(side1);
 		sidesList.add(side2);
@@ -60,6 +63,7 @@ public class TriangleTypeManager {
 
    /*The sum of two smaller sides must be greater than the longest side to be a triangle*/
     static Boolean checkIfTriangleCanBeFormed(Integer side1,Integer side2,Integer side3){
+    	
     	boolean result = false;
       if((side1 + side2 > side3)) {
     	  result = true;

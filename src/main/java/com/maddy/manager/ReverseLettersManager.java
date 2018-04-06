@@ -1,5 +1,7 @@
 package com.maddy.manager;
 
+import org.springframework.util.StringUtils;
+
 public class ReverseLettersManager {
      
 	private ReverseLettersManager() {
@@ -12,6 +14,10 @@ public class ReverseLettersManager {
      *  
      */
 	public static String getLettersReversedString(String sourceString) {
+		
+		  if(StringUtils.isEmpty(sourceString)|| sourceString.trim().isEmpty()){
+			  throw new IllegalArgumentException();
+		  }
 		
 		 String[] strArray = sourceString.split(REGX);
 	     StringBuilder reversedString = new StringBuilder();
@@ -29,6 +35,9 @@ public class ReverseLettersManager {
 
 	public static String getLettersReversedStringUsingBuilder(String sourceString) {
 		
+		if(StringUtils.isEmpty(sourceString) || sourceString.trim().isEmpty()){
+			  throw new IllegalArgumentException();
+		  }
 		 //to hold reversed string
 		 StringBuilder reversedString = new StringBuilder();
 		 //split string by space and reverse using StringBuilder method

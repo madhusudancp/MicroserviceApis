@@ -33,6 +33,17 @@ public class TestTriangleTypeManager {
 		assertEquals("NOTTRIANGLE",TriangleTypeManager.getTriangleType(expected));
 	}
 
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentException() {
+		TriangleTypeManager.sortSidesOftriangleAsc(1,0,0);
+	         }
+	
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForNeativeValues() {
+		TriangleTypeManager.sortSidesOftriangleAsc(-1,-2,1);
+	         }
+	
+	
 	@Test
 	public void TestSortSidesOftriangleAsc() {
 	        List<Integer> expected = Arrays.asList(5,10,20);
@@ -41,6 +52,8 @@ public class TestTriangleTypeManager {
 	}
 	
 
+	
+	
 	@Test
 	public void TestcheckIfTriangleCanBeFormed() {
 		

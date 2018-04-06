@@ -17,6 +17,10 @@ public class FibonacciManager {
 	    {
             //BigInteger to hold large numerical value i.e say 9000 th fibonacci
 		    
+		    if(n<0) {
+		    	throw new IllegalArgumentException();
+		    }
+		
 		    BigInteger a = BigInteger.valueOf(0);
 			BigInteger b = BigInteger.valueOf(1);
 			BigInteger c ;

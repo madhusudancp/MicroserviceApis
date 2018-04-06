@@ -31,5 +31,20 @@ public class TestReverseLettersManager {
 		    
 	}	
 	
-	
+	 @Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForNull() {
+		 ReverseLettersManager.getLettersReversedStringUsingBuilder(null);
+	         }
+	 
+	 @Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForEmpty() {
+		      ReverseLettersManager.getLettersReversedStringUsingBuilder("");
+	         }
+	 
+	 @Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForWhiteSpace() {
+		      ReverseLettersManager.getLettersReversedStringUsingBuilder("	");
+	         }
+	 		 	
+
 }

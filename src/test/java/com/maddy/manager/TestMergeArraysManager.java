@@ -25,6 +25,40 @@ public class TestMergeArraysManager {
 	}
 	
 	
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentException() {
+		       MergeArraysManager.mergeArrays(null);
+	         }
+	
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForEmptyArray() {
+		Map<String,Integer[]> arrayMap = new HashMap<>();
+		arrayMap.put("Array1", new Integer[] {});
+		       MergeArraysManager.mergeArrays(arrayMap);
+	         }
 	
 	
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForNullArray() {
+		Map<String,Integer[]> arrayMap = new HashMap<>();
+		arrayMap.put("Array1", null);
+		       MergeArraysManager.mergeArrays(arrayMap);
+	         }
+
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForNullKey() {
+		Map<String,Integer[]> arrayMap = new HashMap<>();
+		arrayMap.put(null, new Integer[] {1});
+		       MergeArraysManager.mergeArrays(arrayMap);
+	         }
+	
+
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForEmptyKey() {
+		Map<String,Integer[]> arrayMap = new HashMap<>();
+		arrayMap.put(" ", new Integer[] {1});
+		       MergeArraysManager.mergeArrays(arrayMap);
+	         }
+
 }
+
