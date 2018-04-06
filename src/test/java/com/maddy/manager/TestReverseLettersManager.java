@@ -30,7 +30,7 @@ public class TestReverseLettersManager {
 		    assertEquals(revStr1,ReverseLettersManager.getLettersReversedStringUsingBuilder(str1));
 		    
 	}	
-	
+	//Sentence cannot be null/empty/whitespace
 	 @Test(expected=IllegalArgumentException.class)
 	 public void expectedIllegalArgumentExceptionForNull() {
 		 ReverseLettersManager.getLettersReversedStringUsingBuilder(null);
@@ -46,5 +46,8 @@ public class TestReverseLettersManager {
 		      ReverseLettersManager.getLettersReversedStringUsingBuilder("	");
 	         }
 	 		 	
-
+	 @Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentException() {
+		 ReverseLettersManager.getLettersReversedString(null);
+	         }
 }

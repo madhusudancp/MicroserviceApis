@@ -15,16 +15,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExceptionResources  extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(value = { ServiceException.class })
-    protected ResponseEntity<ExceptionDto> handleConflict(ServiceException ex, WebRequest request) {
-        return  new ResponseEntity<>(ex.getExceptionDto(),HttpStatus.BAD_REQUEST);
+    protected ResponseEntity<String> handleConflict(ServiceException ex, WebRequest request) {
+        return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
     }
 	
 	@ExceptionHandler(value = { Throwable.class,RuntimeException.class })
-    protected ResponseEntity<ExceptionDto> handleConflict(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse =ex.getMessage();
-        ExceptionDto error =new ExceptionDto();
-        error.setErrorCode(0000);
-        error.setErrorMessage(bodyOfResponse);
-        return  new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+    protected ResponseEntity<String> handleConflict(RuntimeException ex, WebRequest request) {
+        return  new ResponseEntity<>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

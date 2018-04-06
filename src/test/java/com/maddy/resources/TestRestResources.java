@@ -1,6 +1,8 @@
 package com.maddy.resources;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -17,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.maddy.exceptions.ServiceException;
 import com.maddy.services.ApiService;
 
 @RunWith(SpringRunner.class)
@@ -69,5 +72,13 @@ public class TestRestResources {
 	
 	
 	
+    @Test
+    public void TestHandleConflict() throws Exception {
 
+    	when(apiService.getTriangleType(0,0,0)).thenThrow(ServiceException.class);
+        this.mockMvc.perform(get("/api/triangletype?a=0&b=0&c=0")).andDo(print()).andExpect(status().isBadRequest());
+                
+        
+        
+    }
 }

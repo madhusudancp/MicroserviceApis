@@ -27,7 +27,7 @@ public class TestFibonacciManager {
 		 assertEquals(valueAt9000InFibonacciSeries,FibonacciManager.getNthFibonacci(9000));
 	}
 
-	
+	//n cannot be negative
 	 @Test(expected=IllegalArgumentException.class)
 	 public void expectedIllegalArgumentException() {
 		       FibonacciManager.getNthFibonacci(-1);

@@ -10,19 +10,8 @@ package com.maddy.exceptions;
 		        super();
 		    }
 		
-		    public ServiceException(ExceptionDto exceptionDto) {
-		        super(exceptionDto.getErrorMessage());
-		        this.exceptionDto=exceptionDto;
+			public ServiceException(String message) {
+		        super(message);
 		    }
-		
-		private  ExceptionDto exceptionDto;
-
-		public ExceptionDto getExceptionDto() {
-			return exceptionDto;
-		}
-		public void setExceptionDto(ExceptionDto exceptionDto) {
-			this.exceptionDto = exceptionDto;
-		}
-		   
-		    
+			
 }

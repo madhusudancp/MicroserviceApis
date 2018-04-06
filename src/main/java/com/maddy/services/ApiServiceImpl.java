@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.maddy.exceptions.ExceptionDto;
 import com.maddy.exceptions.ExceptionMessages;
 import com.maddy.exceptions.ServiceException;
 import com.maddy.manager.FibonacciManager;
@@ -27,7 +26,7 @@ public class ApiServiceImpl implements ApiService{
 		try {
 		  return FibonacciManager.getNthFibonacci(n);
 		}catch (IllegalArgumentException e) {
-          throw new ServiceException(getExceptionDto(exceptionMessages.nNegativeCode,exceptionMessages.nNegativeMessage));
+          throw new ServiceException(exceptionMessages.nNegativeMessage);
 		}
 	}
 
@@ -36,7 +35,7 @@ public class ApiServiceImpl implements ApiService{
 		try {
 		return ReverseLettersManager.getLettersReversedStringUsingBuilder(sentence);
 	}catch (IllegalArgumentException e) {
-        throw new ServiceException(getExceptionDto(exceptionMessages.sentenceEmpty,exceptionMessages.sentenceEmptyMessage));
+        throw new ServiceException(exceptionMessages.sentenceEmptyMessage);
 		}
 	}
 
@@ -46,7 +45,7 @@ public class ApiServiceImpl implements ApiService{
 			List<Integer> sidesList = TriangleTypeManager.sortSidesOftriangleAsc(a, b, c);
 			return TriangleTypeManager.getTriangleType(sidesList);
 	   }catch (IllegalArgumentException e) {
-        throw new ServiceException(getExceptionDto(exceptionMessages.nonPositiveVertex,exceptionMessages.nonPositiveVertexMessage));
+        throw new ServiceException(exceptionMessages.nonPositiveVertexMessage);
 		}
 	}
 
@@ -58,15 +57,9 @@ public class ApiServiceImpl implements ApiService{
 		combinedArray.put(combinedArrayKey,MergeArraysManager.mergeArrays(arrayMap));
 		return combinedArray;
 		}catch (IllegalArgumentException e) {
-	        throw new ServiceException(getExceptionDto(exceptionMessages.emptyArray,exceptionMessages.emptyArrayMessage));
+	        throw new ServiceException(exceptionMessages.emptyArrayMessage);
 			}
 	}
 
 	
-	public ExceptionDto getExceptionDto(Integer errorCode,String errorMessage) {
-		ExceptionDto exceptionDto = new ExceptionDto();
-		exceptionDto.setErrorCode(errorCode);
-		exceptionDto.setErrorMessage(errorMessage);
-		return exceptionDto;
-	}
 }

@@ -32,7 +32,7 @@ public class TestTriangleTypeManager {
 		expected = Arrays.asList(2,2,10);
 		assertEquals("NOTTRIANGLE",TriangleTypeManager.getTriangleType(expected));
 	}
-
+     //Sides of triangles cannot be 0 or negative
 	@Test(expected=IllegalArgumentException.class)
 	 public void expectedIllegalArgumentException() {
 		TriangleTypeManager.sortSidesOftriangleAsc(1,0,0);

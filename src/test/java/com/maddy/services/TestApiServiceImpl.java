@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.maddy.exceptions.ServiceException;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestApiServiceImpl {
@@ -28,6 +30,11 @@ public class TestApiServiceImpl {
 		String found = apiService.getCharReversedWords("How are you");
 	     assertThat(found).isEqualTo(exp);
 	 }
+	
+	 @Test(expected=ServiceException.class)
+	 public void expectedServiceExceptionForNull() {
+		 apiService.getCharReversedWords(null);
+	         }
 	
 	
 	@Test
@@ -45,6 +52,11 @@ public class TestApiServiceImpl {
 	     assertThat(found).isEqualTo(exp);
 	 }
 	
+	 //Sides of triangles cannot be 0 or negative
+		@Test(expected=ServiceException.class)
+		 public void expectedServiceException() {
+			apiService.getTriangleType(1,0,0);
+		         }
 
 	@Test
 	public void TestGetCombinedArray() {
@@ -59,6 +71,11 @@ public class TestApiServiceImpl {
 		assertEquals("Array", k);;
 	});
 	}
+	
+	@Test(expected=ServiceException.class)
+	 public void expectedServiceExceptionGetCombinedArray() {
+		apiService.getCombinedArray(null);
+	         }
 	
 	
 }

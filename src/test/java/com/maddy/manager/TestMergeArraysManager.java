@@ -37,7 +37,7 @@ public class TestMergeArraysManager {
 		       MergeArraysManager.mergeArrays(arrayMap);
 	         }
 	
-	
+	//Array cannot have null/empty values or keys
 	@Test(expected=IllegalArgumentException.class)
 	 public void expectedIllegalArgumentExceptionForNullArray() {
 		Map<String,Integer[]> arrayMap = new HashMap<>();
