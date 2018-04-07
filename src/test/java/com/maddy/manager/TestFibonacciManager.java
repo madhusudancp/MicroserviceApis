@@ -1,6 +1,7 @@
 package com.maddy.manager;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.math.BigInteger;
 
@@ -16,10 +17,6 @@ public class TestFibonacciManager {
 	
 	@Test
 	public void testGetNthFibonacci() {
-	  // test for 0,1,2
-		 assertEquals(BigInteger.ZERO,FibonacciManager.getNthFibonacci(0));
-		 assertEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(1));
-		 assertEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(2));
 	  // test for 10	 
 		 assertEquals(BigInteger.valueOf(55),FibonacciManager.getNthFibonacci(10));
 		 assertEquals(valueAt100InFibonacciSeries,FibonacciManager.getNthFibonacci(100)); 
@@ -32,5 +29,31 @@ public class TestFibonacciManager {
 	 public void expectedIllegalArgumentException() {
 		       FibonacciManager.getNthFibonacci(-1);
 	         }
-	
+
+	 
+		@Test
+		public void zeroAsInput(){
+			assertEquals(BigInteger.ZERO,FibonacciManager.getNthFibonacci(0));
+			assertNotEquals(BigInteger.ZERO,FibonacciManager.getNthFibonacci(3));
+		}
+
+		@Test
+		public void oneAsInput(){
+			assertEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(1));
+			assertNotEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(5));
+		}
+		
+		@Test
+		public void twoAsInput(){
+			assertEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(2));
+			assertNotEquals(BigInteger.ONE,FibonacciManager.getNthFibonacci(6));
+		}
+	 
+	 
+		@Test(expected=IllegalArgumentException.class)
+		public void neativeAsInput(){
+			FibonacciManager.getNthFibonacci(-200);
+		}
+	 
+	 
 }

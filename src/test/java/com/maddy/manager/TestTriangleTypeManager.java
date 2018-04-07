@@ -3,6 +3,7 @@ package com.maddy.manager;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -22,15 +23,20 @@ public class TestTriangleTypeManager {
 		
 		List<Integer> expected = Arrays.asList(3,4,5);
 		assertEquals("SCALENE",TriangleTypeManager.getTriangleType(expected));
+		assertNotEquals("EQUILATERAL",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(5,5,5);
 		assertEquals("EQUILATERAL",TriangleTypeManager.getTriangleType(expected));
+		assertNotEquals("SCALENE",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(2,2,3);
 		assertEquals("ISOSCELES",TriangleTypeManager.getTriangleType(expected));
+		assertNotEquals("EQUILATERAL",TriangleTypeManager.getTriangleType(expected));
 		
 		expected = Arrays.asList(2,2,10);
 		assertEquals("NOTTRIANGLE",TriangleTypeManager.getTriangleType(expected));
+		assertNotEquals("EQUILATERAL",TriangleTypeManager.getTriangleType(expected));
+		
 	}
      //Sides of triangles cannot be 0 or negative
 	@Test(expected=IllegalArgumentException.class)
@@ -43,6 +49,10 @@ public class TestTriangleTypeManager {
 		TriangleTypeManager.sortSidesOftriangleAsc(-1,-2,1);
 	         }
 	
+	@Test(expected=IllegalArgumentException.class)
+	 public void expectedIllegalArgumentExceptionForNeativeAndZero() {
+		TriangleTypeManager.sortSidesOftriangleAsc(0,-2,1);
+	         }
 	
 	@Test
 	public void TestSortSidesOftriangleAsc() {
@@ -50,7 +60,6 @@ public class TestTriangleTypeManager {
 	        //Test equal after sorting sides
 	        assertThat(expected, is(TriangleTypeManager.sortSidesOftriangleAsc(10,20,5)));
 	}
-	
 
 	
 	
